@@ -31,6 +31,9 @@
             --tag-text: #0369a1;
             --nav-bg: #ffffff;
             --nav-border: #e2e8f0;
+            --nav-dropdown-bg: var(--nav-bg);
+            --nav-dropdown-border: var(--nav-border);
+            --nav-dropdown-link-hover-bg: var(--bg-secondary);
             --footer-bg: #1e293b;
             --footer-text: #e2e8f0;
             --footer-border: #334155;
@@ -59,7 +62,7 @@
             --skill-sass-color: #CC6699;
             --skill-bootstrap-color: #7952B3;
             --skill-java-color: #f89820;
-            --skill-csharp-color: #9b4f96;
+            --skill-dotnet-color: #512BD4; /* .NET Purple */
             --skill-cplusplus-color: #00599C;
             --skill-cordova-color: #465566;
             --skill-git-color: #F05032;
@@ -67,6 +70,7 @@
             --skill-docker-color: #2496ED;
             --skill-aws-color: #FF9900;
             --skill-jira-color: #0052CC;
+            --skill-asana-color: #CE4470; /* Asana Pink */
             --skill-adobe-color: #FF0000;
             --skill-android-color: #3DDC84;
             --skill-excel-color: #217346;
@@ -87,8 +91,8 @@
             --border-card: #30363d; 
             --contact-icon-bg-hover: rgba(74, 222, 128, 0.1); 
             --contact-icon-color: var(--text-accent); 
-            --link-color: var(--text-accent); /* Changed to green */
-            --link-hover-color: var(--text-primary); /* Changed to lighter green */
+            --link-color: var(--text-accent); 
+            --link-hover-color: var(--text-primary); 
             --button-bg: #2da44e;
             --button-text: #ffffff;
             --button-hover-bg: #258942;
@@ -97,6 +101,9 @@
             --tag-text: #bbf7d0; 
             --nav-bg: #000000;
             --nav-border: #22c55e; 
+            --nav-dropdown-bg: var(--nav-bg);
+            --nav-dropdown-border: var(--nav-border);
+            --nav-dropdown-link-hover-bg: var(--bg-primary);
             --footer-bg: #000000;
             --footer-text: #4ade80;
             --footer-border: #22c55e;
@@ -111,7 +118,6 @@
             --theme-toggle-active-bg: var(--text-accent); 
             --theme-toggle-active-text: var(--nav-bg); 
 
-            /* Skill Icon Colors (Default to accent in dark mode) */
             --skill-laravel-color: var(--text-accent);
             --skill-react-color: var(--text-accent);
             --skill-php-color: var(--text-accent);
@@ -126,7 +132,7 @@
             --skill-sass-color: var(--text-accent);
             --skill-bootstrap-color: var(--text-accent);
             --skill-java-color: var(--text-accent);
-            --skill-csharp-color: var(--text-accent);
+            --skill-dotnet-color: var(--text-accent);
             --skill-cplusplus-color: var(--text-accent);
             --skill-cordova-color: var(--text-accent);
             --skill-git-color: var(--text-accent);
@@ -134,6 +140,7 @@
             --skill-docker-color: var(--text-accent);
             --skill-aws-color: var(--text-accent);
             --skill-jira-color: var(--text-accent);
+            --skill-asana-color: var(--text-accent);
             --skill-adobe-color: var(--text-accent);
             --skill-android-color: var(--text-accent);
             --skill-excel-color: var(--text-accent);
@@ -164,6 +171,9 @@
             --tag-text: #c7d2fe; /* Indigo-200 */
             --nav-bg: #000000;
             --nav-border: var(--text-accent);
+            --nav-dropdown-bg: var(--nav-bg);
+            --nav-dropdown-border: var(--nav-border);
+            --nav-dropdown-link-hover-bg: var(--bg-secondary);
             --footer-bg: #000000;
             --footer-text: var(--text-accent);
             --footer-border: var(--text-accent);
@@ -178,7 +188,6 @@
             --theme-toggle-active-bg: var(--text-accent); 
             --theme-toggle-active-text: var(--nav-bg); 
 
-            /* Skill Icon Colors for Night Mode - use primary text color for subtlety */
             --skill-laravel-color: var(--text-primary);
             --skill-react-color: var(--text-primary);
             --skill-php-color: var(--text-primary);
@@ -193,7 +202,7 @@
             --skill-sass-color: var(--text-primary);
             --skill-bootstrap-color: var(--text-primary);
             --skill-java-color: var(--text-primary);
-            --skill-csharp-color: var(--text-primary);
+            --skill-dotnet-color: var(--text-primary);
             --skill-cplusplus-color: var(--text-primary);
             --skill-cordova-color: var(--text-primary);
             --skill-git-color: var(--text-primary);
@@ -201,6 +210,7 @@
             --skill-docker-color: var(--text-primary);
             --skill-aws-color: var(--text-primary);
             --skill-jira-color: var(--text-primary);
+            --skill-asana-color: var(--text-primary);
             --skill-adobe-color: var(--text-primary);
             --skill-android-color: var(--text-primary);
             --skill-excel-color: var(--text-primary);
@@ -226,8 +236,6 @@
         ::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }
 
         nav { background-color: var(--nav-bg); border-bottom: 1px solid var(--nav-border); transition: background-color 0.3s ease, border-bottom-color 0.3s ease; }
-        nav .nav-link { color: var(--text-muted); transition: color 0.3s ease; }
-        nav .nav-link:hover { color: var(--text-accent); }
         nav .brand-name { color: var(--text-accent); }
 
         #themeToggleContainer button {
@@ -240,6 +248,43 @@
             background-color: var(--theme-toggle-active-bg);
             color: var(--theme-toggle-active-text);
         }
+        
+        /* Hamburger Menu Styles */
+        #menuToggle {
+            color: var(--text-accent);
+            font-size: 1.5rem; /* text-2xl */
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+        #mobileMenu {
+            background-color: var(--nav-dropdown-bg);
+            border: 1px solid var(--nav-dropdown-border);
+            border-top: none; /* Avoid double border with nav */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            transform: translateY(-100%);
+            opacity: 0;
+            z-index: 40; /* Below nav, above content */
+        }
+        #mobileMenu.menu-open {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        #mobileMenu a {
+            display: block;
+            padding: 0.75rem 1.5rem; /* py-3 px-6 */
+            color: var(--text-muted);
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.875rem; /* text-sm */
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        #mobileMenu a:hover {
+            background-color: var(--nav-dropdown-link-hover-bg);
+            color: var(--text-accent);
+        }
+
 
         #about { background-color: var(--bg-secondary); color: var(--text-primary); transition: background-color 0.3s ease, color 0.3s ease; }
         #about .hero-name { color: var(--text-accent); }
@@ -251,7 +296,6 @@
         #experience, #licenses_certifications, #contact { background-color: var(--bg-primary); }
         #skills, #passion_projects { background-color: var(--bg-secondary); }
 
-        /* Ensure sections with --bg-secondary use the correct card background in dark/night modes */
         .dark-mode #skills .card, .dark-mode #passion_projects .card,
         .night-mode #skills .card, .night-mode #passion_projects .card { 
             background-color: var(--bg-secondary); 
@@ -276,12 +320,12 @@
             opacity: 0;
         }
         .experience-details.open {
-            max-height: 500px; /* Adjust as needed */
+            max-height: 500px; 
             opacity: 1;
         }
         .details-toggle {
             cursor: pointer;
-            display: inline-flex; /* Changed to inline-flex */
+            display: inline-flex; 
             align-items: center;
             color: var(--link-color);
             font-size: 0.9rem;
@@ -298,50 +342,49 @@
             transform: rotate(90deg);
         }
 
-
         /* Contact Section - Icon Only */
         #contact .card {
-            padding: 2rem; /* More padding for the contact card */
+            padding: 2rem; 
         }
         .contact-icons-grid {
             display: flex;
             justify-content: center;
-            gap: 1.5rem; /* Space between icons */
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            gap: 1.5rem; 
+            flex-wrap: wrap; 
         }
         .contact-icon-link {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 4rem; /* Size of the clickable area */
+            width: 4rem; 
             height: 4rem;
-            border-radius: 50%; /* Circular background */
-            background-color: transparent; /* Initially transparent */
+            border-radius: 50%; 
+            background-color: transparent; 
             color: var(--contact-icon-color);
-            font-size: 1.75rem; /* Icon size */
+            font-size: 1.75rem; 
             transition: background-color 0.2s ease, transform 0.2s ease;
-            position: relative; /* For tooltip */
+            position: relative; 
         }
         .contact-icon-link:hover {
-            background-color: var(--contact-icon-bg-hover); /* Use specific hover bg */
-            transform: translateY(-3px); /* Slight lift on hover */
+            background-color: var(--contact-icon-bg-hover); 
+            transform: translateY(-3px); 
         }
         .contact-icon-link .tooltip-text {
             visibility: hidden;
-            width: max-content; /* Adjust width to content */
-            background-color: var(--bg-card); /* Use card bg for tooltip */
-            color: var(--text-primary); /* Use primary text for tooltip */
+            width: max-content; 
+            background-color: var(--bg-card); 
+            color: var(--text-primary); 
             text-align: center;
             border-radius: 6px;
             padding: 5px 10px;
             position: absolute;
             z-index: 1;
-            bottom: 125%; /* Position above the icon */
+            bottom: 125%; 
             left: 50%;
             transform: translateX(-50%);
             opacity: 0;
             transition: opacity 0.3s;
-            font-size: 0.75rem; /* Small text for tooltip */
+            font-size: 0.75rem; 
             border: 1px solid var(--border-card);
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
@@ -366,7 +409,7 @@
         .skill-icon.fa-sass { color: var(--skill-sass-color); }
         .skill-icon.fa-bootstrap { color: var(--skill-bootstrap-color); }
         .skill-icon.fa-java { color: var(--skill-java-color); }
-        .skill-icon.fa-laptop-code { color: var(--skill-csharp-color); }
+        .skill-icon.fa-cogs { color: var(--skill-dotnet-color); } /* .NET icon */
         .skill-icon.fa-code { color: var(--skill-cplusplus-color); }
         .skill-icon.fa-mobile-alt { color: var(--skill-cordova-color); }
         .skill-icon.fa-git-alt { color: var(--skill-git-color); }
@@ -374,6 +417,7 @@
         .skill-icon.fa-docker { color: var(--skill-docker-color); }
         .skill-icon.fa-aws { color: var(--skill-aws-color); }
         .skill-icon.fa-jira { color: var(--skill-jira-color); }
+        .skill-icon.fa-tasks { color: var(--skill-asana-color); } /* Asana icon */
         .skill-icon.fa-camera-retro { color: var(--skill-adobe-color); }
         .skill-icon.fa-android { color: var(--skill-android-color); }
         .skill-icon.fa-file-excel { color: var(--skill-excel-color); }
@@ -390,29 +434,32 @@
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold font-roboto-mono brand-name">Milad Yek</a>
             <div class="flex items-center space-x-4">
-                <div class="hidden sm:flex items-center space-x-3 font-roboto-mono">
-                    <a href="#about" class="text-sm nav-link">About</a>
-                    <a href="#experience" class="text-sm nav-link">Experience</a>
-                    <a href="#skills" class="text-sm nav-link">Skills</a>
-                    <a href="#licenses_certifications" class="text-sm nav-link">Certifications</a>
-                    <a href="#passion_projects" class="text-sm nav-link">Projects</a>
-                    <a href="#contact" class="text-sm nav-link">Contact</a>
-                    <a href="Milad's CV.pdf" download="Milad_Yek_CV.pdf" class="text-sm nav-link flex items-center">
-                        <i class="fas fa-download mr-1"></i> CV
-                    </a>
-                </div>
                 <div id="themeToggleContainer" class="flex rounded-md shadow-sm">
                     <button data-theme="light" class="theme-btn px-3 py-1 text-xs font-medium rounded-l-md focus:outline-none focus:z-10">Light</button>
                     <button data-theme="dark" class="theme-btn px-3 py-1 text-xs font-medium focus:outline-none focus:z-10 -ml-px">Dark</button>
                     <button data-theme="night" class="theme-btn px-3 py-1 text-xs font-medium rounded-r-md focus:outline-none focus:z-10 -ml-px">Night</button>
                 </div>
+                <button id="menuToggle" aria-label="Open navigation menu">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
+        </div>
+        <div id="mobileMenu" class="absolute top-full left-0 right-0 hidden shadow-lg md:shadow-none">
+            <a href="#about" class="nav-link-mobile">About</a>
+            <a href="#experience" class="nav-link-mobile">Experience</a>
+            <a href="#skills" class="nav-link-mobile">Skills</a>
+            <a href="#licenses_certifications" class="nav-link-mobile">Certifications</a>
+            <a href="#passion_projects" class="nav-link-mobile">Projects</a>
+            <a href="#contact" class="nav-link-mobile">Contact</a>
+            <a href="/Milad's CV.pdf" download="Milad_Yek_CV.pdf" class="nav-link-mobile flex items-center justify-center">
+                <i class="fas fa-download mr-2"></i> Download CV
+            </a>
         </div>
     </nav>
 
     <header id="about" class="py-20 md:py-28">
         <div class="container mx-auto px-6 text-center">
-            <img src="unnamed.jpg" alt="Milad Yek" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 object-cover" style="border-color: var(--border-color);" onerror="this.onerror=null; this.src='https://placehold.co/160x160/0d1117/4ade80?text=MY';">
+            <img src="unnamed.jpg" alt="Milad Yek" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 object-cover" style="border-color: var(--border-color);" onerror="this.onerror=null; this.src='/Milad_Yekleh.jpg';">
             <h1 class="text-5xl md:text-6xl font-bold font-roboto-mono mb-4 hero-name">Milad Yek</h1>
             <p class="text-xl md:text-2xl mb-3 font-light font-roboto-mono hero-subtitle">Software Engineer | Fullstack Developer | Data Analyst</p>
             <p id="careerObjectives" class="text-lg md:text-xl max-w-3xl mx-auto hero-description">
@@ -521,14 +568,15 @@
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-sass skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Sass</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-bootstrap skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Bootstrap</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-java skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Java + XML</p></div>
-                    <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fas fa-laptop-code skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">C# + SQL Server WPF</p></div>
+                    <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fas fa-cogs skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">.NET</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fas fa-code skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">C++</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fas fa-mobile-alt skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Cordova</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-git-alt skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Git / Github / Gitlab</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fas fa-code-branch skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">VS Code, Visual Studio</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-docker skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Docker</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-aws skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">AWS</p></div>
-                    <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-jira skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Jira / Asana</p></div>
+                    <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-jira skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Jira</p></div>
+                    <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fas fa-tasks skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Asana</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fas fa-camera-retro skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Adobe Suite</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-android skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Android Studio, PyCharm</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fas fa-file-excel skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Excel, Google Sheets</p></div>
@@ -659,7 +707,7 @@
         const detailToggles = document.querySelectorAll('.details-toggle');
         detailToggles.forEach(toggle => {
             toggle.addEventListener('click', () => {
-                const detailsList = toggle.nextElementSibling; // The UL is the next sibling
+                const detailsList = toggle.nextElementSibling; 
                 const arrow = toggle.querySelector('.arrow');
                 if (detailsList.classList.contains('open')) {
                     detailsList.classList.remove('open');
@@ -670,8 +718,36 @@
                 }
             });
         });
+        
+        // Hamburger Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
 
-        document.querySelectorAll('a.nav-link').forEach(anchor => {
+        menuToggle.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevent click from closing menu immediately
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('menu-open');
+        });
+
+        // Close menu if a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('menu-open');
+            });
+        });
+        
+        // Close menu if clicked outside
+        document.addEventListener('click', (event) => {
+            if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target) && mobileMenu.classList.contains('menu-open')) {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('menu-open');
+            }
+        });
+
+
+        // Smooth scrolling for navigation links (now inside mobile menu)
+        document.querySelectorAll('#mobileMenu a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
@@ -684,6 +760,7 @@
                 }
             });
         });
+
 
         document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
