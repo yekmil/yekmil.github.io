@@ -9,83 +9,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            /* Default: Dark Mode (Matrix Green) */
-            --bg-primary: #0d1117;
-            --bg-secondary: #000000;
-            --bg-card: #161b22;
-            --text-primary: #86efac; /* green-300 */
-            --text-secondary: #4ade80; /* green-400 */
-            --text-accent: #4ade80; /* green-400 */
-            --text-muted: #9ca3af; /* slate-400 */
-            --border-color: #4ade80;
-            --border-card: #30363d;
-            --contact-item-border: rgba(128, 128, 128, 0.2);
-            --contact-item-hover-bg: rgba(128, 128, 128, 0.05);
-            --link-color: #58a6ff;
-            --link-hover-color: #79c0ff;
-            --button-bg: #2da44e;
-            --button-text: #ffffff;
-            --button-hover-bg: #258942;
-            --tag-bg: rgba(74, 222, 128, 0.15);
-            --tag-border: #4ade80;
-            --tag-text: #bbf7d0; /* green-200 */
-            --nav-bg: #000000;
-            --nav-border: #22c55e; /* green-500 */
-            --footer-bg: #000000;
-            --footer-text: #4ade80;
-            --footer-border: #22c55e;
-            --scrollbar-track: #0d1117;
-            --scrollbar-thumb: #4ade80;
-            --scrollbar-thumb-hover: #22c55e;
-            --cert-icon-color: #a5d6a7; /* Muted green for cert icons in dark */
-            --theme-toggle-bg: transparent;
-            --theme-toggle-text: var(--text-accent);
-            --theme-toggle-border: var(--text-accent);
-            --theme-toggle-active-bg: var(--text-accent);
-            --theme-toggle-active-text: var(--nav-bg);
-
-            /* Skill Icon Colors (Default to accent in dark mode) */
-            --skill-laravel-color: var(--text-accent);
-            --skill-react-color: var(--text-accent);
-            --skill-php-color: var(--text-accent);
-            --skill-wordpress-color: var(--text-accent);
-            --skill-python-color: var(--text-accent);
-            --skill-sql-color: var(--text-accent);
-            --skill-js-color: var(--text-accent);
-            --skill-elk-color: var(--text-accent);
-            --skill-html-color: var(--text-accent);
-            --skill-css-color: var(--text-accent);
-            --skill-sass-color: var(--text-accent);
-            --skill-bootstrap-color: var(--text-accent);
-            --skill-java-color: var(--text-accent);
-            --skill-csharp-color: var(--text-accent);
-            --skill-cplusplus-color: var(--text-accent);
-            --skill-cordova-color: var(--text-accent);
-            --skill-git-color: var(--text-accent);
-            --skill-vscode-color: var(--text-accent);
-            --skill-docker-color: var(--text-accent);
-            --skill-aws-color: var(--text-accent);
-            --skill-jira-color: var(--text-accent);
-            --skill-adobe-color: var(--text-accent);
-            --skill-android-color: var(--text-accent);
-            --skill-excel-color: var(--text-accent);
-            --skill-db-color: var(--text-accent);
-            --skill-linux-color: var(--text-accent);
-            --skill-monitoring-color: var(--text-accent);
-        }
-
-        .light-mode {
+            /* Default: Light Mode */
             --bg-primary: #ffffff;
             --bg-secondary: #f8fafc;
-            --bg-card: #ffffff;
+            --bg-card: #ffffff; 
             --text-primary: #1e293b;
             --text-secondary: #0f172a;
             --text-accent: #0284c7;
             --text-muted: #64748b;
             --border-color: #0284c7;
             --border-card: #e2e8f0;
-            --contact-item-border: var(--border-card);
-            --contact-item-hover-bg: var(--bg-secondary);
+            --contact-icon-bg-hover: #e0f2fe; /* sky-100 for hover */
+            --contact-icon-color: var(--text-accent);
             --link-color: #0ea5e9;
             --link-hover-color: #0369a1;
             --button-bg: #0284c7;
@@ -102,17 +37,22 @@
             --scrollbar-track: #f1f5f9;
             --scrollbar-thumb: #94a3b8;
             --scrollbar-thumb-hover: #64748b;
-            --cert-icon-color: #fbbf24; /* amber-400 */
-            --theme-toggle-active-text: var(--nav-bg);
+            --cert-icon-color: #fbbf24; 
+            
+            --theme-toggle-bg: transparent;
+            --theme-toggle-text: var(--text-accent);
+            --theme-toggle-border: var(--text-accent);
+            --theme-toggle-active-bg: var(--text-accent);
+            --theme-toggle-active-text: var(--nav-bg); 
 
-            /* Original Skill Icon Colors for Light Mode */
             --skill-laravel-color: #FF2D20;
             --skill-react-color: #61DAFB;
             --skill-php-color: #777BB4;
             --skill-wordpress-color: #21759B;
             --skill-python-color: #3776AB;
             --skill-sql-color: #00758F;
-            --skill-js-color: #F7DF1E;
+            --skill-jamstack-color: #F05033; 
+            --skill-hugo-color: #FF4088;    
             --skill-elk-color: #00A599;
             --skill-html-color: #E34F26;
             --skill-css-color: #1572B6;
@@ -135,18 +75,85 @@
             --skill-monitoring-color: #FF780A;
         }
 
+        .dark-mode {
+            --bg-primary: #0d1117;
+            --bg-secondary: #000000;
+            --bg-card: var(--bg-primary); 
+            --text-primary: #86efac; 
+            --text-secondary: #4ade80; 
+            --text-accent: #4ade80; 
+            --text-muted: #9ca3af; 
+            --border-color: #4ade80;
+            --border-card: #30363d; 
+            --contact-icon-bg-hover: rgba(74, 222, 128, 0.1); 
+            --contact-icon-color: var(--text-accent); 
+            --link-color: var(--text-accent); /* Changed to green */
+            --link-hover-color: var(--text-primary); /* Changed to lighter green */
+            --button-bg: #2da44e;
+            --button-text: #ffffff;
+            --button-hover-bg: #258942;
+            --tag-bg: rgba(74, 222, 128, 0.15);
+            --tag-border: #4ade80;
+            --tag-text: #bbf7d0; 
+            --nav-bg: #000000;
+            --nav-border: #22c55e; 
+            --footer-bg: #000000;
+            --footer-text: #4ade80;
+            --footer-border: #22c55e;
+            --scrollbar-track: #0d1117;
+            --scrollbar-thumb: #4ade80;
+            --scrollbar-thumb-hover: #22c55e;
+            --cert-icon-color: #a5d6a7; 
+            
+            --theme-toggle-bg: transparent;
+            --theme-toggle-text: var(--text-accent); 
+            --theme-toggle-border: var(--text-accent); 
+            --theme-toggle-active-bg: var(--text-accent); 
+            --theme-toggle-active-text: var(--nav-bg); 
+
+            /* Skill Icon Colors (Default to accent in dark mode) */
+            --skill-laravel-color: var(--text-accent);
+            --skill-react-color: var(--text-accent);
+            --skill-php-color: var(--text-accent);
+            --skill-wordpress-color: var(--text-accent);
+            --skill-python-color: var(--text-accent);
+            --skill-sql-color: var(--text-accent);
+            --skill-jamstack-color: var(--text-accent);
+            --skill-hugo-color: var(--text-accent);
+            --skill-elk-color: var(--text-accent);
+            --skill-html-color: var(--text-accent);
+            --skill-css-color: var(--text-accent);
+            --skill-sass-color: var(--text-accent);
+            --skill-bootstrap-color: var(--text-accent);
+            --skill-java-color: var(--text-accent);
+            --skill-csharp-color: var(--text-accent);
+            --skill-cplusplus-color: var(--text-accent);
+            --skill-cordova-color: var(--text-accent);
+            --skill-git-color: var(--text-accent);
+            --skill-vscode-color: var(--text-accent);
+            --skill-docker-color: var(--text-accent);
+            --skill-aws-color: var(--text-accent);
+            --skill-jira-color: var(--text-accent);
+            --skill-adobe-color: var(--text-accent);
+            --skill-android-color: var(--text-accent);
+            --skill-excel-color: var(--text-accent);
+            --skill-db-color: var(--text-accent);
+            --skill-linux-color: var(--text-accent);
+            --skill-monitoring-color: var(--text-accent);
+        }
+
         .night-mode {
             --bg-primary: #000000;
             --bg-secondary: #0a0a0a;
-            --bg-card: #111111;
+            --bg-card: var(--bg-primary); 
             --text-primary: #999999;
             --text-secondary: #bbbbbb;
             --text-accent: #6366f1; /* Indigo-500 */
             --text-muted: #555555;
             --border-color: var(--text-accent);
-            --border-card: #222222;
-            --contact-item-border: rgba(255, 255, 255, 0.1);
-            --contact-item-hover-bg: rgba(255, 255, 255, 0.03);
+            --border-card: #222222; 
+            --contact-icon-bg-hover: rgba(99, 102, 241, 0.1); 
+            --contact-icon-color: var(--text-accent); 
             --link-color: #818cf8; /* Indigo-400 */
             --link-hover-color: #a5b4fc; /* Indigo-300 */
             --button-bg: var(--text-accent);
@@ -164,7 +171,12 @@
             --scrollbar-thumb: var(--text-accent);
             --scrollbar-thumb-hover: #4338ca; /* Indigo-700 */
             --cert-icon-color: #71717a; /* zinc-500 */
-            --theme-toggle-active-text: var(--nav-bg);
+
+            --theme-toggle-bg: transparent;
+            --theme-toggle-text: var(--text-accent); 
+            --theme-toggle-border: var(--text-accent); 
+            --theme-toggle-active-bg: var(--text-accent); 
+            --theme-toggle-active-text: var(--nav-bg); 
 
             /* Skill Icon Colors for Night Mode - use primary text color for subtlety */
             --skill-laravel-color: var(--text-primary);
@@ -173,7 +185,8 @@
             --skill-wordpress-color: var(--text-primary);
             --skill-python-color: var(--text-primary);
             --skill-sql-color: var(--text-primary);
-            --skill-js-color: var(--text-primary);
+            --skill-jamstack-color: var(--text-primary);
+            --skill-hugo-color: var(--text-primary);
             --skill-elk-color: var(--text-primary);
             --skill-html-color: var(--text-primary);
             --skill-css-color: var(--text-primary);
@@ -238,6 +251,13 @@
         #experience, #licenses_certifications, #contact { background-color: var(--bg-primary); }
         #skills, #passion_projects { background-color: var(--bg-secondary); }
 
+        /* Ensure sections with --bg-secondary use the correct card background in dark/night modes */
+        .dark-mode #skills .card, .dark-mode #passion_projects .card,
+        .night-mode #skills .card, .night-mode #passion_projects .card { 
+            background-color: var(--bg-secondary); 
+        }
+
+
         .experience-title, .project-title, .skill-title, .cert-title { color: var(--text-accent); }
         .company-name { color: var(--text-accent); }
         .dates, .cert-issuer { color: var(--text-muted); }
@@ -248,32 +268,88 @@
         footer { background-color: var(--footer-bg); color: var(--footer-text); border-top: 1px solid var(--footer-border); transition: background-color 0.3s ease, color 0.3s ease, border-top-color 0.3s ease; }
         footer .footer-subtext { color: var(--text-muted); }
         
-        .contact-item {
-            @apply flex items-center space-x-4 py-4 border-b;
-            border-color: var(--contact-item-border);
-            transition: background-color 0.2s ease;
+        /* Experience Dropdown */
+        .experience-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
         }
-        .contact-item:last-child { @apply border-b-0; }
-        .contact-item:hover { background-color: var(--contact-item-hover-bg); }
-        .contact-icon {
-            font-size: 1.75rem; /* text-3xl */
-            width: 2.5rem;
-            color: var(--text-accent);
-            @apply text-center flex-shrink-0;
+        .experience-details.open {
+            max-height: 500px; /* Adjust as needed */
+            opacity: 1;
         }
-        .contact-info-text { /* For non-link text like phone number */
-            color: var(--text-primary);
-            font-size: 1rem; /* Tailwind base */
-        }
-        .contact-link {
+        .details-toggle {
+            cursor: pointer;
+            display: inline-flex; /* Changed to inline-flex */
+            align-items: center;
             color: var(--link-color);
-            font-size: 1rem; /* Tailwind base */
-            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
         }
-        .contact-link:hover {
+        .details-toggle:hover {
             color: var(--link-hover-color);
-            text-decoration: underline;
         }
+        .details-toggle .arrow {
+            margin-left: 0.25rem;
+            transition: transform 0.3s ease;
+        }
+        .details-toggle .arrow.open {
+            transform: rotate(90deg);
+        }
+
+
+        /* Contact Section - Icon Only */
+        #contact .card {
+            padding: 2rem; /* More padding for the contact card */
+        }
+        .contact-icons-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem; /* Space between icons */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+        .contact-icon-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 4rem; /* Size of the clickable area */
+            height: 4rem;
+            border-radius: 50%; /* Circular background */
+            background-color: transparent; /* Initially transparent */
+            color: var(--contact-icon-color);
+            font-size: 1.75rem; /* Icon size */
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            position: relative; /* For tooltip */
+        }
+        .contact-icon-link:hover {
+            background-color: var(--contact-icon-bg-hover); /* Use specific hover bg */
+            transform: translateY(-3px); /* Slight lift on hover */
+        }
+        .contact-icon-link .tooltip-text {
+            visibility: hidden;
+            width: max-content; /* Adjust width to content */
+            background-color: var(--bg-card); /* Use card bg for tooltip */
+            color: var(--text-primary); /* Use primary text for tooltip */
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position above the icon */
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.75rem; /* Small text for tooltip */
+            border: 1px solid var(--border-card);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .contact-icon-link:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
 
         .skill-icon { margin-bottom: 0.5rem; display: inline-block; font-size: 2.25rem; }
         .skill-icon.fa-laravel { color: var(--skill-laravel-color); }
@@ -282,7 +358,8 @@
         .skill-icon.fa-wordpress { color: var(--skill-wordpress-color); }
         .skill-icon.fa-python { color: var(--skill-python-color); }
         .skill-icon.fa-database { color: var(--skill-sql-color); }
-        .skill-icon.fa-js-square { color: var(--skill-js-color); }
+        .skill-icon.fa-layer-group { color: var(--skill-jamstack-color); } 
+        .skill-icon.fa-rocket { color: var(--skill-hugo-color); } 
         .skill-icon.fa-searchengin { color: var(--skill-elk-color); }
         .skill-icon.fa-html5 { color: var(--skill-html-color); }
         .skill-icon.fa-css3-alt { color: var(--skill-css-color); }
@@ -320,6 +397,9 @@
                     <a href="#licenses_certifications" class="text-sm nav-link">Certifications</a>
                     <a href="#passion_projects" class="text-sm nav-link">Projects</a>
                     <a href="#contact" class="text-sm nav-link">Contact</a>
+                    <a href="Milad's CV.pdf" download="Milad_Yek_CV.pdf" class="text-sm nav-link flex items-center">
+                        <i class="fas fa-download mr-1"></i> CV
+                    </a>
                 </div>
                 <div id="themeToggleContainer" class="flex rounded-md shadow-sm">
                     <button data-theme="light" class="theme-btn px-3 py-1 text-xs font-medium rounded-l-md focus:outline-none focus:z-10">Light</button>
@@ -332,7 +412,7 @@
 
     <header id="about" class="py-20 md:py-28">
         <div class="container mx-auto px-6 text-center">
-            <img src="unnamed.jpg" alt="Milad Yek" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 object-cover" style="border-color: var(--border-color);" onerror="this.onerror=null; this.src='/unnamed.jpg';">
+            <img src="unnamed.jpg" alt="Milad Yek" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 object-cover" style="border-color: var(--border-color);" onerror="this.onerror=null; this.src='https://placehold.co/160x160/0d1117/4ade80?text=MY';">
             <h1 class="text-5xl md:text-6xl font-bold font-roboto-mono mb-4 hero-name">Milad Yek</h1>
             <p class="text-xl md:text-2xl mb-3 font-light font-roboto-mono hero-subtitle">Software Engineer | Fullstack Developer | Data Analyst</p>
             <p id="careerObjectives" class="text-lg md:text-xl max-w-3xl mx-auto hero-description">
@@ -351,36 +431,58 @@
             <div class="space-y-10">
                 <div class="card">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
-                        <h3 class="text-2xl font-semibold font-roboto-mono experience-title">Full Stack Developer</h3>
-                        <span class="text-sm mt-1 md:mt-0 font-roboto-mono dates">2023 - 2024</span>
+                        <div>
+                            <h3 class="text-2xl font-semibold font-roboto-mono experience-title">Full Stack Developer</h3>
+                            <p class="text-lg font-semibold mb-1 company-name">
+                                <a href="https://grutto.com" target="_blank" rel="noopener noreferrer" class="hover:underline" style="color: var(--link-color);">GRUTTO.com</a>
+                                <span class="font-normal text-sm dates"> (Netherlands - Remote)</span>
+                            </p>
+                        </div>
+                        <span class="text-sm mt-2 md:mt-0 font-roboto-mono dates">2023 - 2024</span>
                     </div>
-                    <p class="text-lg font-semibold mb-1 company-name">GRUTTO.com <span class="font-normal text-sm dates">(Netherlands - Remote)</span></p>
-                    <ul class="list-disc list-inside space-y-1 mt-2" style="color: var(--text-primary);">
+                    <button class="details-toggle">
+                        Details <i class="fas fa-chevron-right arrow ml-1"></i>
+                    </button>
+                    <ul class="experience-details list-disc list-inside space-y-1 mt-2 pl-4" style="color: var(--text-primary);">
                         <li>Conducting Agile full stack dev for a Dutch/German e-commerce platform.</li>
                         <li>Developing the React front-end and the PHP/Laravel backend.</li>
                         <li>Integrating the back-end with the front-end using the Lumen API.</li>
                         <li>Providing a dashboard with Voyager for content and WooCommerce for orders.</li>
                     </ul>
                 </div>
+
                 <div class="card">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
-                        <h3 class="text-2xl font-semibold font-roboto-mono experience-title">Data Analyst</h3>
-                        <span class="text-sm mt-1 md:mt-0 font-roboto-mono dates">2022 - 2023</span>
+                        <div>
+                            <h3 class="text-2xl font-semibold font-roboto-mono experience-title">Data Analyst</h3>
+                            <p class="text-lg font-semibold mb-1 company-name">HUAWEI TECHNOLOGIES</p>
+                        </div>
+                        <span class="text-sm mt-2 md:mt-0 font-roboto-mono dates">2022 - 2023</span>
                     </div>
-                    <p class="text-lg font-semibold mb-1 company-name">HUAWEI TECHNOLOGIES</p>
-                    <ul class="list-disc list-inside space-y-1 mt-2" style="color: var(--text-primary);">
+                     <button class="details-toggle">
+                        Details <i class="fas fa-chevron-right arrow ml-1"></i>
+                    </button>
+                    <ul class="experience-details list-disc list-inside space-y-1 mt-2 pl-4" style="color: var(--text-primary);">
                         <li>Data Analysis for recognizing anomalies and identifying patterns.</li>
                         <li>SMSC and MMSC maintenance engineer and KPI monitoring.</li>
                         <li>24/7 onCall customer (MTN) support for incident handling and issue resolving.</li>
                     </ul>
                 </div>
+
                 <div class="card">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
-                        <h3 class="text-2xl font-semibold font-roboto-mono experience-title">Freelance Web Developer</h3>
-                        <span class="text-sm mt-1 md:mt-0 font-roboto-mono dates">2015 - 2022</span>
+                        <div>
+                            <h3 class="text-2xl font-semibold font-roboto-mono experience-title">Freelance Web Developer</h3>
+                            <p class="text-lg font-semibold mb-1 company-name">
+                                <a href="http://takinsoft.ir" target="_blank" rel="noopener noreferrer" class="hover:underline" style="color: var(--link-color);">Takinsoft</a>
+                            </p>
+                        </div>
+                        <span class="text-sm mt-2 md:mt-0 font-roboto-mono dates">2015 - 2022</span>
                     </div>
-                    <p class="text-lg font-semibold mb-1 company-name">Takinsoft</p>
-                    <ul class="list-disc list-inside space-y-1 mt-2" style="color: var(--text-primary);">
+                    <button class="details-toggle">
+                        Details <i class="fas fa-chevron-right arrow ml-1"></i>
+                    </button>
+                    <ul class="experience-details list-disc list-inside space-y-1 mt-2 pl-4" style="color: var(--text-primary);">
                         <li>Met with clients to discuss project requirements and workflow.</li>
                         <li>Designed and coded websites, from layout to function, according to client specifications.</li>
                     </ul>
@@ -409,16 +511,17 @@
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-react skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">React</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-php skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">PHP</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-wordpress skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">WordPress</p></div>
-                    <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-python skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Python (Pandas, TensorFlow, Selenium)</p></div>
+                    <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-python skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Python</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fas fa-database skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">SQL</p></div>
-                    <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-js-square skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">JAMStack / Hugo</p></div>
+                    <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fas fa-layer-group skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">JAMStack</p></div>
+                    <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fas fa-rocket skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Hugo</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fas fa-searchengin skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">ELKStack</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-html5 skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">HTML</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-css3-alt skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">CSS</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-sass skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Sass</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-bootstrap skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Bootstrap</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-java skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Java + XML</p></div>
-                    <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fas fa-laptop-code skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">C# + SQL (WPF)</p></div>
+                    <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fas fa-laptop-code skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">C# + SQL Server WPF</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fas fa-code skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">C++</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fas fa-mobile-alt skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Cordova</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-git-alt skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Git / Github / Gitlab</p></div>
@@ -474,29 +577,29 @@
         <div class="container mx-auto px-6">
             <h2 class="section-title">Contact Me</h2>
             <div class="max-w-2xl mx-auto card p-8 md:p-10">
-                <p class="text-center text-lg mb-8" style="color: var(--text-primary);">
-                    Feel free to reach out for collaborations, opportunities, or just to say hi!
+                <p class="text-center text-lg mb-10" style="color: var(--text-primary);">
+                    Let's connect!
                 </p>
-                <div class="space-y-5">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope contact-icon"></i>
-                        <a href="mailto:miladyekleh@gmail.com" class="contact-link">miladyekleh@gmail.com</a>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone contact-icon"></i>
-                        <span class="contact-info-text">+989900994207</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fab fa-linkedin contact-icon"></i>
-                        <a href="https://linkedin.com/in/yekmil/" target="_blank" rel="noopener noreferrer" class="contact-link">linkedin.com/in/yekmil/</a>
-                    </div>
-                     <div class="contact-item">
-                        <i class="fas fa-rss contact-icon"></i>
-                        <a href="https://milad.space" target="_blank" rel="noopener noreferrer" class="contact-link">Tech Blog: milad.space</a>
-                    </div>
-                     <div class="contact-item">
-                        <i class="fas fa-briefcase contact-icon"></i>
-                        <a href="http://takinsoft.ir" target="_blank" rel="noopener noreferrer" class="contact-link">Portfolio: takinsoft.ir</a>
+                <div class="contact-icons-grid">
+                    <a href="mailto:miladyekleh@gmail.com" class="contact-icon-link" title="Email">
+                        <i class="fas fa-envelope"></i>
+                        <span class="tooltip-text">miladyekleh@gmail.com</span>
+                    </a>
+                    <a href="https://linkedin.com/in/yekmil/" target="_blank" rel="noopener noreferrer" class="contact-icon-link" title="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                        <span class="tooltip-text">linkedin.com/in/yekmil/</span>
+                    </a>
+                     <a href="https://milad.space" target="_blank" rel="noopener noreferrer" class="contact-icon-link" title="Tech Blog">
+                        <i class="fas fa-rss"></i>
+                        <span class="tooltip-text">milad.space</span>
+                    </a>
+                     <a href="http://takinsoft.ir" target="_blank" rel="noopener noreferrer" class="contact-icon-link" title="Portfolio Website">
+                        <i class="fas fa-briefcase"></i>
+                         <span class="tooltip-text">takinsoft.ir</span>
+                    </a>
+                    <div class="contact-icon-link" title="Phone">
+                        <i class="fas fa-phone"></i>
+                        <span class="tooltip-text">+989900994207</span>
                     </div>
                 </div>
             </div>
@@ -514,8 +617,8 @@
         const themeToggleContainer = document.getElementById('themeToggleContainer');
         const themeButtons = themeToggleContainer.querySelectorAll('.theme-btn');
         const body = document.body;
-        const themes = ['dark', 'light', 'night'];
-        let currentThemeName = 'dark'; // Default
+        const themes = ['light', 'dark', 'night']; 
+        let currentThemeName = 'light'; 
 
         function applyTheme(themeName) {
             body.classList.remove('dark-mode', 'light-mode', 'night-mode');
@@ -526,10 +629,9 @@
             themeButtons.forEach(btn => {
                 if (btn.dataset.theme === themeName) {
                     btn.classList.add('active');
-                    // Apply active styles directly as Tailwind JIT might not pick up dynamic var changes for complex selectors
                     btn.style.backgroundColor = getComputedStyle(body).getPropertyValue('--theme-toggle-active-bg').trim();
                     btn.style.color = getComputedStyle(body).getPropertyValue('--theme-toggle-active-text').trim();
-                    btn.style.borderColor = getComputedStyle(body).getPropertyValue('--theme-toggle-border').trim(); // Ensure border matches
+                    btn.style.borderColor = getComputedStyle(body).getPropertyValue('--theme-toggle-border').trim();
                 } else {
                     btn.classList.remove('active');
                     btn.style.backgroundColor = getComputedStyle(body).getPropertyValue('--theme-toggle-bg').trim();
@@ -543,13 +645,29 @@
         if (savedTheme && themes.includes(savedTheme)) {
             applyTheme(savedTheme);
         } else {
-            applyTheme('dark'); // Default to dark
+            applyTheme(currentThemeName); 
         }
 
         themeButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const selectedTheme = button.dataset.theme;
                 applyTheme(selectedTheme);
+            });
+        });
+
+        // Work Experience Dropdown Toggle
+        const detailToggles = document.querySelectorAll('.details-toggle');
+        detailToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const detailsList = toggle.nextElementSibling; // The UL is the next sibling
+                const arrow = toggle.querySelector('.arrow');
+                if (detailsList.classList.contains('open')) {
+                    detailsList.classList.remove('open');
+                    arrow.classList.remove('open');
+                } else {
+                    detailsList.classList.add('open');
+                    arrow.classList.add('open');
+                }
             });
         });
 
@@ -561,7 +679,7 @@
                 if (targetElement) {
                     const navHeight = document.querySelector('nav').offsetHeight;
                     const elementPosition = targetElement.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - navHeight - 20;
+                    const offsetPosition = elementPosition + window.pageYOffset - navHeight - 20; 
                     window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
                 }
             });
