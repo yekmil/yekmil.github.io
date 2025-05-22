@@ -217,7 +217,7 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         .font-roboto-mono { font-family: 'Roboto Mono', monospace; }
-        .section-title { @apply text-7xl sm:text-8xl font-bold mb-10 md:mb-12 text-center font-roboto-mono; color: var(--text-accent); }
+        .section-title { @apply text-4xl sm:text-5xl md:text-6xl font-bold mb-10 md:mb-16 text-center font-roboto-mono; color: var(--text-accent); }
         .card { @apply p-6 rounded-lg border; background-color: var(--bg-card); border-color: var(--border-card); transition: background-color 0.3s ease, border-color 0.3s ease; }
         .tag { @apply px-3 py-1 rounded-full text-sm font-medium border; background-color: var(--tag-bg); border-color: var(--tag-border); color: var(--tag-text); transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; }
         
@@ -419,7 +419,7 @@
             </p>
             <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
                 <a href="#contact" class="font-semibold px-8 py-3 rounded-md shadow-md transition-colors duration-300 font-roboto-mono hero-button">Get in Touch</a>
-                <a href="/Milad's CV.pdf" download="Milad_Yek_CV.pdf" id="heroDownloadCvBtn" class="hidden font-semibold px-8 py-3 rounded-md shadow-md transition-colors duration-300 font-roboto-mono hero-button items-center justify-center">
+                <a href="/Milad's CV.pdf" download="Milad_Yek_CV.pdf" id="heroDownloadCvBtn" class="font-semibold px-8 py-3 rounded-md shadow-md transition-colors duration-300 font-roboto-mono hero-button inline-flex items-center justify-center">
                     <i class="fas fa-download mr-2"></i> Download CV
                 </a>
             </div>
@@ -677,53 +677,20 @@
             });
         });
         
-        // Hamburger Menu Toggle (for mobile, if #menuToggle exists)
-        const menuToggle = document.getElementById('menuToggle'); 
-        const mainMenu = document.getElementById('mainMenu'); 
-
-        if (menuToggle && mainMenu) {
-            menuToggle.addEventListener('click', (event) => {
-                event.stopPropagation(); 
-                mainMenu.classList.toggle('hidden');
-                mainMenu.classList.toggle('menu-open');
-            });
-
-            mainMenu.querySelectorAll('a.nav-link-main-menu').forEach(link => {
-                link.addEventListener('click', (e) => { 
-                    mainMenu.classList.add('hidden');
-                    mainMenu.classList.remove('menu-open');
-                    
-                    e.preventDefault();
-                    const targetId = link.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        const navHeight = document.querySelector('nav').offsetHeight;
-                        const elementPosition = targetElement.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - navHeight - 20; 
-                        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                    }
-                });
-            });
-            
-            document.addEventListener('click', (event) => {
-                if (mainMenu.classList.contains('menu-open') && !mainMenu.contains(event.target) && !menuToggle.contains(event.target)) {
-                    mainMenu.classList.add('hidden');
-                    mainMenu.classList.remove('menu-open');
-                }
-            });
-        }
-
-
         // Smooth scrolling for any # links (like "Get in Touch" and brand name)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const targetId = this.getAttribute('href');
-                // Check if it's an internal link and not part of mobile menu handling (which has its own preventDefault)
-                if (targetId.startsWith('#') && !this.classList.contains('nav-link-main-menu')) {
+                if (targetId.startsWith('#')) {
                     e.preventDefault(); 
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
-                        const navHeight = document.querySelector('nav').offsetHeight;
+                        let navHeight = 0;
+                        const navElement = document.querySelector('nav');
+                        if (navElement) {
+                            navHeight = navElement.offsetHeight;
+                        }
+                        
                         const elementPosition = targetElement.getBoundingClientRect().top;
                         const offsetPosition = elementPosition + window.pageYOffset - navHeight - 20; 
                         window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
@@ -739,13 +706,15 @@
         const endPageThreshold = document.body.scrollHeight - window.innerHeight - 100; 
 
         window.addEventListener('scroll', () => {
-            if (window.pageYOffset > scrollThreshold) {
-                scrollToTopBtn.classList.remove('hidden');
-            } else {
-                scrollToTopBtn.classList.add('hidden');
+            if (scrollToTopBtn) { 
+                if (window.pageYOffset > scrollThreshold) {
+                    scrollToTopBtn.classList.remove('hidden');
+                } else {
+                    scrollToTopBtn.classList.add('hidden');
+                }
             }
 
-            if (heroDownloadCvBtn) { // Check if the button exists
+            if (heroDownloadCvBtn) { 
                 if (window.pageYOffset >= endPageThreshold) {
                     heroDownloadCvBtn.classList.remove('hidden');
                     heroDownloadCvBtn.classList.add('inline-flex'); 
