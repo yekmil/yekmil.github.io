@@ -88,6 +88,8 @@
             --skill-nosql-color: #5A6772;
             --skill-javascript-color: #F7DF1E;
             --skill-typescript-color: #3178C6;
+            --skill-nodejs-color: #339933; /* Node.js Green */
+            --skill-shell-color: #4EAA25; /* A generic green for shell/terminal */
         }
 
         .dark-mode {
@@ -167,6 +169,8 @@
             --skill-nosql-color: var(--text-accent);
             --skill-javascript-color: var(--text-accent);
             --skill-typescript-color: var(--text-accent);
+            --skill-nodejs-color: var(--text-accent);
+            --skill-shell-color: var(--text-accent);
         }
 
         .night-mode {
@@ -246,6 +250,8 @@
             --skill-nosql-color: var(--text-primary);
             --skill-javascript-color: var(--text-primary);
             --skill-typescript-color: var(--text-primary);
+            --skill-nodejs-color: var(--text-primary);
+            --skill-shell-color: var(--text-primary);
         }
 
         html { scroll-behavior: smooth; }
@@ -481,6 +487,8 @@
         .skill-icon.fa-hdd { color: var(--skill-nosql-color); }
         .skill-icon.fa-js { color: var(--skill-javascript-color); }
         .skill-icon.fa-file-code { color: var(--skill-typescript-color); }
+        .skill-icon.fa-node-js { color: var(--skill-nodejs-color); }
+        .skill-icon.fa-terminal { color: var(--skill-shell-color); }
 
 
         .cert-icon-fa, .edu-icon-fa {
@@ -735,7 +743,7 @@
             </div>
             <div>
                 <h3 class="text-2xl font-semibold mb-6 text-center font-roboto-mono skill-title">Languages, Frameworks & Tools</h3>
-                <div id="toolsContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 text-center">
+                <div id="toolsContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 text-center">
                     <div class="card p-4 rounded-lg border"><i class="fab fa-laravel skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Laravel</p></div>
                     <div class="card p-4 rounded-lg border"><i class="fab fa-react skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">React</p></div>
                     <div class="card p-4 rounded-lg border"><i class="fab fa-php skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">PHP</p></div>
@@ -744,6 +752,8 @@
                     <div class="card p-4 rounded-lg border"><i class="fas fa-database skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">SQL</p></div>
                     <div class="card p-4 rounded-lg border"><i class="fab fa-js skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">JavaScript</p></div>
                     <div class="card p-4 rounded-lg border"><i class="fas fa-file-code skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">TypeScript</p></div>
+                    <div class="card p-4 rounded-lg border"><i class="fab fa-node-js skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Node.js</p></div>
+                    <div class="card p-4 rounded-lg border"><i class="fas fa-terminal skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Shell Scripting</p></div>
                     <div class="card p-4 rounded-lg border"><i class="fab fa-golang skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Go</p></div>
                     <div class="card p-4 rounded-lg border"><i class="fas fa-hdd skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">NoSQL</p></div>
                     <div class="card p-4 rounded-lg border"><i class="fas fa-layer-group skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">JAMStack</p></div>
@@ -764,7 +774,7 @@
                     <div class="card p-4 rounded-lg border"><i class="fab fa-jira skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Jira</p></div>
                     <div class="card p-4 rounded-lg border"><i class="fas fa-tasks skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Asana</p></div>
                     <div class="card p-4 rounded-lg border"><i class="fas fa-camera-retro skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Adobe Suite</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fab fa-android skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Android Studio, PyCharm</p></div>
+                    <div class="card p-4 rounded-lg border"><i class="fab fa-android skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Android Studio</p></div>
                     <div class="card p-4 rounded-lg border"><i class="fas fa-file-excel skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Excel, Google Sheets</p></div>
                     <div class="card p-4 rounded-lg border"><i class="fas fa-server skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">GaussDB, BigQuery</p></div>
                     <div class="card p-4 rounded-lg border"><i class="fab fa-linux skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Linux</p></div>
