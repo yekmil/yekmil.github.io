@@ -74,6 +74,10 @@
             --skill-db-color: #00758F;
             --skill-linux-color: #FCC624;
             --skill-monitoring-color: #FF780A;
+            --skill-golang-color: #00ADD8;
+            --skill-nosql-color: #5A6772; 
+            --skill-javascript-color: #F7DF1E;
+            --skill-typescript-color: #3178C6;
         }
 
         .dark-mode {
@@ -141,6 +145,10 @@
             --skill-db-color: var(--text-accent);
             --skill-linux-color: var(--text-accent);
             --skill-monitoring-color: var(--text-accent);
+            --skill-golang-color: var(--text-accent);
+            --skill-nosql-color: var(--text-accent);
+            --skill-javascript-color: var(--text-accent);
+            --skill-typescript-color: var(--text-accent);
         }
 
         .night-mode {
@@ -208,6 +216,10 @@
             --skill-db-color: var(--text-primary);
             --skill-linux-color: var(--text-primary);
             --skill-monitoring-color: var(--text-primary);
+            --skill-golang-color: var(--text-primary);
+            --skill-nosql-color: var(--text-primary);
+            --skill-javascript-color: var(--text-primary);
+            --skill-typescript-color: var(--text-primary);
         }
 
         body {
@@ -217,7 +229,7 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         .font-roboto-mono { font-family: 'Roboto Mono', monospace; }
-        .section-title { @apply text-5xl sm:text-6xl font-bold mb-12 md:mb-20 text-center font-roboto-mono; color: var(--text-accent); } /* Further increased font size and margin */
+        .section-title { @apply text-5xl sm:text-6xl font-bold mb-12 md:mb-20 text-center font-roboto-mono; color: var(--text-accent); }
         .card { @apply p-6 rounded-lg border; background-color: var(--bg-card); border-color: var(--border-card); transition: background-color 0.3s ease, border-color 0.3s ease; }
         .tag { @apply px-3 py-1 rounded-full text-sm font-medium border; background-color: var(--tag-bg); border-color: var(--tag-border); color: var(--tag-text); transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; }
         
@@ -380,6 +392,11 @@
         .skill-icon.fa-server { color: var(--skill-db-color); }
         .skill-icon.fa-linux { color: var(--skill-linux-color); }
         .skill-icon.fa-chart-line { color: var(--skill-monitoring-color); }
+        .skill-icon.fa-golang { color: var(--skill-golang-color); }
+        .skill-icon.fa-hdd { color: var(--skill-nosql-color); }
+        .skill-icon.fa-js { color: var(--skill-javascript-color); }
+        .skill-icon.fa-file-code { color: var(--skill-typescript-color); }
+
 
         .cert-icon-fa { color: var(--cert-icon-color); font-size: 1.875rem; margin-bottom: 0.75rem; }
 
@@ -498,11 +515,12 @@
             <div class="mb-12">
                 <h3 class="text-2xl font-semibold mb-4 text-center font-roboto-mono skill-title">Specializations</h3>
                 <div id="specializationsContainer" class="flex flex-wrap justify-center gap-3 md:gap-4">
-                    <span class="tag">Web Design/Development</span>
-                    <span class="tag">Data Analysis</span>
-                    <span class="tag">User Interface/User Experience</span>
-                    <span class="tag">Design Thinking</span>
-                    <span class="tag">Full Stack Web & Mobile App Development</span>
+                    <span class="tag">Full-Stack Web Development</span>
+                    <span class="tag">Backend Architecture & API Development</span>
+                    <span class="tag">Frontend Engineering & UI/UX Design</span>
+                    <span class="tag">Data Analysis & Insights</span>
+                    <span class="tag">Cloud Solutions</span>
+                    <span class="tag">Agile Project Delivery</span>
                 </div>
             </div>
             <div>
@@ -514,6 +532,10 @@
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-wordpress skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">WordPress</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-python skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Python</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fas fa-database skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">SQL</p></div>
+                    <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-js skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">JavaScript</p></div>
+                    <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fas fa-file-code skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">TypeScript</p></div>
+                    <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-golang skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Go</p></div>
+                    <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fas fa-hdd skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">NoSQL</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fas fa-layer-group skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">JAMStack</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fas fa-rocket skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Hugo</p></div>
                     <div class="p-4 rounded-lg border" style="background-color:var(--bg-card); border-color:var(--border-card);"><i class="fab fa-aws skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">AWS</p></div>
@@ -564,7 +586,7 @@
                     <a href="https://www.datacamp.com/statement-of-accomplishment/course/e4359a1fe8c0c4a1c15ea0d65d4fc66a6e6fa94f" target="_blank" rel="noopener noreferrer" class="block hover:opacity-80 transition-opacity">
                         <i class="fas fa-certificate cert-icon-fa"></i> 
                         <h3 class="text-xl font-semibold mb-1 font-roboto-mono cert-title">Introduction to Data Science in Python</h3> 
-                        <p class="cert-issuer">University of Michigan / Coursera</p> 
+                        <p class="cert-issuer">DataCamp</p> 
                     </a>
                 </div>
                 <div class="card">
@@ -574,11 +596,10 @@
                         <p class="cert-issuer">Google / Coursera</p> 
                     </a>
                 </div>
-                <div class="card">
-                    <a href="https://www.datacamp.com/statement-of-accomplishment/course/e50ddae317a1b2619094a7d297e014cc2d914112" target="_blank" rel="noopener noreferrer" class="block hover:opacity-80 transition-opacity">
-                         <i class="fas fa-certificate cert-icon-fa"></i>
-                         <h3 class="text-xl font-semibold mb-1 font-roboto-mono cert-title">Data Analysis in Excel and Spreadsheets</h3>
-                         <p class="cert-issuer">DataCamp (via Microsoft / edX content)</p>
+                 <div class="card">
+                    <a href="https://www.datacamp.com/statement-of-accomplishment/course/914250cd418b88bc93ebbd2f77665a06b097056a" target="_blank" rel="noopener noreferrer" class="block hover:opacity-80 transition-opacity"> <i class="fas fa-certificate cert-icon-fa"></i> 
+                        <h3 class="text-xl font-semibold mb-1 font-roboto-mono cert-title">Data Processing Shell and Bash Scripting</h3> 
+                        <p class="cert-issuer">DataCamp</p> 
                     </a>
                 </div>
                 <div class="card">
@@ -589,10 +610,10 @@
                     </a>
                 </div>
                 <div class="card">
-                    <a href="https://www.datacamp.com/statement-of-accomplishment/course/914250cd418b88bc93ebbd2f77665a06b097056a" target="_blank" rel="noopener noreferrer" class="block hover:opacity-80 transition-opacity">
-                        <i class="fas fa-certificate cert-icon-fa"></i> 
-                        <h3 class="text-xl font-semibold mb-1 font-roboto-mono cert-title">Data Processing Shell and Bash Scripting</h3> 
-                        <p class="cert-issuer">DataCamp</p> 
+                    <a href="https://www.datacamp.com/statement-of-accomplishment/course/e50ddae317a1b2619094a7d297e014cc2d914112" target="_blank" rel="noopener noreferrer" class="block hover:opacity-80 transition-opacity">
+                         <i class="fas fa-certificate cert-icon-fa"></i>
+                         <h3 class="text-xl font-semibold mb-1 font-roboto-mono cert-title">Data Analysis in Excel and Spreadsheets</h3>
+                         <p class="cert-issuer">DataCamp</p>
                     </a>
                 </div>
                  <div class="card">
