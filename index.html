@@ -355,7 +355,9 @@
 
         .experience-title, .project-title, .skill-title, .cert-title { color: var(--text-accent); }
         .company-name { color: var(--text-accent); }
-        .dates, .cert-issuer { color: var(--text-muted); }
+        .dates, .cert-issuer, .location-info { color: var(--text-muted); }
+        .location-info .fa-map-marker-alt { margin-right: 0.25rem; }
+
 
         .card a { color: var(--link-color); text-decoration: underline; }
         .card a:hover { color: var(--link-hover-color); }
@@ -642,12 +644,14 @@
             <h2 class="text-3xl md:text-4xl font-bold text-center font-roboto-mono mb-12 md:mb-16 section-title-underline" style="color: var(--text-accent);">Career Experience</h2>
             <div class="space-y-10">
                 <div class="card">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-1">
                         <div>
                             <h3 class="text-2xl font-semibold font-roboto-mono experience-title">Full Stack Developer</h3>
-                            <p class="text-lg font-semibold mb-1 company-name">
+                            <p class="text-lg font-semibold mb-0 company-name">
                                 <a href="https://grutto.com" target="_blank" rel="noopener noreferrer" class="hover:underline" style="color: var(--link-color);">GRUTTO.com</a>
-                                <span class="font-normal text-sm dates"> (Netherlands - Remote)</span>
+                            </p>
+                            <p class="text-sm location-info mt-1">
+                                <i class="fas fa-map-marker-alt"></i> Netherlands - Remote
                             </p>
                         </div>
                         <span class="text-sm mt-2 md:mt-0 font-roboto-mono dates">2023 - 2024</span>
@@ -664,10 +668,13 @@
                 </div>
 
                 <div class="card">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-1">
                         <div>
                             <h3 class="text-2xl font-semibold font-roboto-mono experience-title">Data Analyst</h3>
-                            <p class="text-lg font-semibold mb-1 company-name">HUAWEI TECHNOLOGIES</p>
+                            <p class="text-lg font-semibold mb-0 company-name">HUAWEI TECHNOLOGIES</p>
+                            <p class="text-sm location-info mt-1">
+                                <i class="fas fa-map-marker-alt"></i> Tehran - Onsite
+                            </p>
                         </div>
                         <span class="text-sm mt-2 md:mt-0 font-roboto-mono dates">2022 - 2023</span>
                     </div>
