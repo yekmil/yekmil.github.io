@@ -589,6 +589,18 @@
             border-radius: 1.5px;
         }
 
+        /* Fade-in Animation for Sections */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px); /* Start slightly lower */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
     </style>
 </head>
 <body class="antialiased">
@@ -639,7 +651,7 @@
         </div>
     </header>
 
-    <section id="experience" data-section-name="Experience" class="portfolio-section">
+    <section id="experience" data-section-name="Experience" class="portfolio-section fade-in-section">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-bold text-center font-roboto-mono mb-12 md:mb-16 section-title-underline" style="color: var(--text-accent);">Career Experience</h2>
             <div class="space-y-10">
@@ -710,7 +722,7 @@
         </div>
     </section>
 
-    <section id="skills" data-section-name="Skills" class="portfolio-section">
+    <section id="skills" data-section-name="Skills" class="portfolio-section fade-in-section">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-bold text-center font-roboto-mono mb-12 md:mb-16 section-title-underline" style="color: var(--text-accent);">Skills</h2>
             <div id="specializationsContainer" class="flex flex-wrap justify-center gap-3 md:gap-4 mb-12">
@@ -762,7 +774,7 @@
         </div>
     </section>
 
-    <section id="licenses_certifications" data-section-name="Certifications" class="portfolio-section">
+    <section id="licenses_certifications" data-section-name="Certifications" class="portfolio-section fade-in-section">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-bold text-center font-roboto-mono mb-12 md:mb-16 section-title-underline" style="color: var(--text-accent);">Licenses & Certifications</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -832,7 +844,7 @@
         </div>
     </section>
 
-    <section id="passion_projects" data-section-name="Projects" class="portfolio-section">
+    <section id="passion_projects" data-section-name="Projects" class="portfolio-section fade-in-section">
         <div class="container mx-auto px-6">
              <h2 class="text-3xl md:text-4xl font-bold text-center font-roboto-mono mb-12 md:mb-16 section-title-underline" style="color: var(--text-accent);">Passion Projects</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -877,7 +889,7 @@
         </div>
     </section>
 
-    <section id="contact" data-section-name="Contact" class="portfolio-section">
+    <section id="contact" data-section-name="Contact" class="portfolio-section fade-in-section">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-bold text-center font-roboto-mono mb-12 md:mb-16 section-title-underline" style="color: var(--text-accent);">Get In Touch</h2>
             <div class="max-w-2xl mx-auto card p-8 md:p-10">
@@ -1142,6 +1154,28 @@
         if (heroNameEl && heroSubtitleEl) {
             typeWriterNameSequence(heroNameEl, "Milad Yekleh", "Milad Yek");
             typeWriterCycle(heroSubtitleEl, heroSubtitleWords);
+        }
+
+        // --- FADE-IN SECTION SCRIPT ---
+        const sectionsToFadeIn = document.querySelectorAll('.fade-in-section');
+        if (sectionsToFadeIn.length > 0) {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 
+            };
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+            const intersectionObserver = new IntersectionObserver(observerCallback, observerOptions);
+            sectionsToFadeIn.forEach(section => {
+                intersectionObserver.observe(section);
+            });
         }
       });
     </script>
