@@ -19,7 +19,7 @@
             --text-muted: #64748b;
             --border-color: #0284c7;
             --border-card: #e2e8f0;
-            --contact-icon-bg-hover: #e0f2fe; /* sky-100 for hover */
+            --contact-icon-bg-hover: #e0f2fe; 
             --contact-icon-color: var(--text-accent);
             --link-color: #0ea5e9;
             --link-hover-color: #0369a1;
@@ -29,8 +29,8 @@
             --tag-bg: #e0f2fe;
             --tag-border: #7dd3fc;
             --tag-text: #0369a1;
-            --nav-bg: #ffffff;
-            --nav-border: #e2e8f0;
+            --top-bar-bg: #ffffff; 
+            --top-bar-border: #e2e8f0;
             --footer-bg: #1e293b;
             --footer-text: #e2e8f0;
             --footer-border: #334155;
@@ -43,7 +43,15 @@
             --theme-toggle-text: var(--text-accent);
             --theme-toggle-border: var(--text-accent);
             --theme-toggle-active-bg: var(--text-accent);
-            --theme-toggle-active-text: var(--nav-bg); 
+            --theme-toggle-active-text: var(--top-bar-bg); 
+
+            --scrollspy-text: var(--text-muted);
+            --scrollspy-active-text: var(--text-accent);
+            --scrollspy-hover-text: var(--text-accent);
+            --scrollspy-bg: rgba(255, 255, 255, 0.9);
+            --scrollspy-border: var(--border-card);
+            --progress-bar-bg: var(--text-accent);
+
 
             --skill-laravel-color: #FF2D20;
             --skill-react-color: #61DAFB;
@@ -100,8 +108,8 @@
             --tag-bg: rgba(74, 222, 128, 0.15);
             --tag-border: #4ade80;
             --tag-text: #bbf7d0; 
-            --nav-bg: #000000;
-            --nav-border: #22c55e; 
+            --top-bar-bg: #000000;
+            --top-bar-border: #22c55e; 
             --footer-bg: #000000;
             --footer-text: #4ade80;
             --footer-border: #22c55e;
@@ -114,7 +122,14 @@
             --theme-toggle-text: var(--text-accent); 
             --theme-toggle-border: var(--text-accent); 
             --theme-toggle-active-bg: var(--text-accent); 
-            --theme-toggle-active-text: var(--nav-bg); 
+            --theme-toggle-active-text: var(--top-bar-bg); 
+
+            --scrollspy-text: var(--text-muted);
+            --scrollspy-active-text: var(--text-accent);
+            --scrollspy-hover-text: var(--text-accent);
+            --scrollspy-bg: rgba(13, 17, 23, 0.9); 
+            --scrollspy-border: var(--border-card);
+            --progress-bar-bg: var(--text-accent);
 
             --skill-laravel-color: var(--text-accent);
             --skill-react-color: var(--text-accent);
@@ -171,8 +186,8 @@
             --tag-bg: rgba(99, 102, 241, 0.15);
             --tag-border: var(--text-accent);
             --tag-text: #c7d2fe; /* Indigo-200 */
-            --nav-bg: #000000;
-            --nav-border: var(--text-accent);
+            --top-bar-bg: #000000;
+            --top-bar-border: var(--text-accent);
             --footer-bg: #000000;
             --footer-text: var(--text-accent);
             --footer-border: var(--text-accent);
@@ -185,7 +200,14 @@
             --theme-toggle-text: var(--text-accent); 
             --theme-toggle-border: var(--text-accent); 
             --theme-toggle-active-bg: var(--text-accent); 
-            --theme-toggle-active-text: var(--nav-bg); 
+            --theme-toggle-active-text: var(--top-bar-bg); 
+
+            --scrollspy-text: var(--text-muted);
+            --scrollspy-active-text: var(--text-accent);
+            --scrollspy-hover-text: var(--text-accent);
+            --scrollspy-bg: rgba(0, 0, 0, 0.85); 
+            --scrollspy-border: var(--border-card);
+            --progress-bar-bg: var(--text-accent);
 
             --skill-laravel-color: var(--text-primary);
             --skill-react-color: var(--text-primary);
@@ -222,14 +244,18 @@
             --skill-typescript-color: var(--text-primary);
         }
 
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-primary);
             transition: background-color 0.3s ease, color 0.3s ease;
+            /* Removed padding-top: 4.5rem; */
         }
         .font-roboto-mono { font-family: 'Roboto Mono', monospace; }
-        .section-title { @apply text-5xl sm:text-6xl font-bold mb-12 md:mb-20 text-center font-roboto-mono; color: var(--text-accent); }
+        .section-title-placeholder { 
+            @apply pt-16 pb-8 md:pt-20 md:pb-10; 
+        }
         .card { @apply p-6 rounded-lg border; background-color: var(--bg-card); border-color: var(--border-card); transition: background-color 0.3s ease, border-color 0.3s ease; }
         .tag { @apply px-3 py-1 rounded-full text-sm font-medium border; background-color: var(--tag-bg); border-color: var(--tag-border); color: var(--tag-text); transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; }
         
@@ -238,8 +264,12 @@
         ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }
 
-        nav { background-color: var(--nav-bg); border-bottom: 1px solid var(--nav-border); transition: background-color 0.3s ease, border-bottom-color 0.3s ease; }
-        nav .brand-name { color: var(--text-accent); }
+        #topBar { 
+            background-color: var(--top-bar-bg); 
+            border-bottom: 1px solid var(--top-bar-border); 
+            transition: background-color 0.3s ease, border-bottom-color 0.3s ease;
+        }
+        #topBar .brand-name { color: var(--text-accent); }
 
         #themeToggleContainer button {
             background-color: var(--theme-toggle-bg);
@@ -252,17 +282,18 @@
             color: var(--theme-toggle-active-text);
         }
         
-        #about { background-color: var(--bg-secondary); color: var(--text-primary); transition: background-color 0.3s ease, color 0.3s ease; }
+        #about { background-color: var(--bg-secondary); color: var(--text-primary); transition: background-color 0.3s ease, color 0.3s ease; padding-top: 6rem; /* Added padding to sections for fixed topBar */ }
+        #experience, #licenses_certifications, #contact, #skills, #passion_projects { padding-top: 6rem; /* Added padding to sections for fixed topBar */ }
+
         #about .hero-name { color: var(--text-accent); }
         #about .hero-subtitle { color: var(--text-muted); }
         #about .hero-description { color: var(--text-primary); }
         #about .hero-button { background-color: var(--button-bg); color: var(--button-text); }
         #about .hero-button:hover { background-color: var(--button-hover-bg); }
 
-        #experience, #licenses_certifications, #contact { background-color: var(--bg-primary); }
-        #skills, #passion_projects { background-color: var(--bg-secondary); }
+        /* #experience, #licenses_certifications, #contact { background-color: var(--bg-primary); } */ /* Already handled by body */
+        /* #skills, #passion_projects { background-color: var(--bg-secondary); } */ /* Already handled by body */
 
-        /* Card background blending for sections with --bg-secondary */
         .light-mode #skills .card, .light-mode #passion_projects .card,
         .dark-mode #skills .card, .dark-mode #passion_projects .card,
         .night-mode #skills .card, .night-mode #passion_projects .card { 
@@ -410,11 +441,86 @@
         #scrollToTopBtn:hover {
             background-color: var(--button-hover-bg);
         }
+
+        /* Scrollspy Navigation */
+        #scrollspyNav {
+            position: fixed;
+            top: 50%;
+            right: 1rem; 
+            transform: translateY(-50%);
+            background-color: var(--scrollspy-bg);
+            padding: 0.5rem;
+            border-radius: 0.375rem; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            z-index: 45; 
+            border: 1px solid var(--scrollspy-border);
+            opacity: 0; /* Hidden by default */
+            visibility: hidden; /* Hidden by default */
+            transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+        }
+        #scrollspyNav.visible { /* Class to make it visible */
+            opacity: 1;
+            visibility: visible;
+        }
+        #scrollspyNav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        #scrollspyNav li a {
+            display: block;
+            padding: 0.4rem 0.6rem; 
+            font-size: 0.7rem; 
+            font-family: 'Roboto Mono', monospace;
+            color: var(--scrollspy-text);
+            text-decoration: none;
+            border-radius: 0.25rem; 
+            transition: color 0.2s ease, background-color 0.2s ease, font-weight 0.2s ease;
+            white-space: nowrap;
+            text-align: right;
+        }
+        #scrollspyNav li a:hover {
+            color: var(--scrollspy-hover-text);
+            background-color: rgba(128,128,128,0.1);
+        }
+        #scrollspyNav li a.active-scrollspy {
+            color: var(--scrollspy-active-text);
+            font-weight: 700; 
+        }
+
+        @media (max-width: 1024px) { 
+            #scrollspyNav {
+                display: none;
+            }
+        }
+        
+        /* Scroll Progress Bar */
+        #scrollProgressBarContainer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px; 
+            background-color: transparent; 
+            z-index: 60; 
+        }
+        #scrollProgressBar {
+            height: 100%;
+            background-color: var(--progress-bar-bg);
+            width: 0%; 
+            transition: width 0.1s linear; 
+        }
+
+
     </style>
 </head>
 <body class="antialiased">
 
-    <nav class="border-b sticky top-0 z-50">
+    <div id="scrollProgressBarContainer">
+        <div id="scrollProgressBar"></div>
+    </div>
+
+    <div id="topBar" class="fixed top-0 left-0 right-0 z-50">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
             <a href="#about" class="text-2xl font-bold font-roboto-mono brand-name">Milad Yek</a>
             <div id="themeToggleContainer" class="flex rounded-md shadow-sm">
@@ -423,9 +529,21 @@
                 <button data-theme="night" class="theme-btn px-3 py-1 text-xs font-medium rounded-r-md focus:outline-none focus:z-10 -ml-px">Night</button>
             </div>
         </div>
-    </nav>
+    </div>
+    
+    <div id="scrollspyNav">
+        <ul>
+            <li><a href="#about" class="scrollspy-link">About</a></li>
+            <li><a href="#experience" class="scrollspy-link">Experience</a></li>
+            <li><a href="#skills" class="scrollspy-link">Skills</a></li>
+            <li><a href="#licenses_certifications" class="scrollspy-link">Certs</a></li>
+            <li><a href="#passion_projects" class="scrollspy-link">Projects</a></li>
+            <li><a href="#contact" class="scrollspy-link">Contact</a></li>
+        </ul>
+    </div>
 
-    <header id="about" class="py-20 md:py-28">
+
+    <header id="about" data-section-name="About" class="py-20 md:py-28 portfolio-section">
         <div class="container mx-auto px-6 text-center">
             <img src="Milad_Yekleh.jpg" alt="Milad Yek" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 object-cover" style="border-color: var(--border-color);" onerror="this.onerror=null; this.src='https://placehold.co/160x160/0d1117/4ade80?text=MY';">
             <h1 class="text-5xl md:text-6xl font-bold font-roboto-mono mb-4 hero-name">Milad Yek</h1>
@@ -443,10 +561,9 @@
         </div>
     </header>
 
-    <section id="experience" class="py-16">
+    <section id="experience" data-section-name="Experience" class="py-16 portfolio-section">
         <div class="container mx-auto px-6">
-            <h2 class="section-title">Work Experience</h2>
-            <div class="space-y-10">
+            <div class="section-title-placeholder"></div> <div class="space-y-10">
                 <div class="card">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
                         <div>
@@ -509,10 +626,9 @@
         </div>
     </section>
 
-    <section id="skills" class="py-16">
+    <section id="skills" data-section-name="Skills" class="py-16 portfolio-section">
         <div class="container mx-auto px-6">
-            <h2 class="section-title">Skills & Specializations</h2>
-            <div class="mb-12">
+            <div class="section-title-placeholder"></div> <div class="mb-12">
                 <h3 class="text-2xl font-semibold mb-4 text-center font-roboto-mono skill-title">Specializations</h3>
                 <div id="specializationsContainer" class="flex flex-wrap justify-center gap-3 md:gap-4">
                     <span class="tag">Full-Stack Web Development</span>
@@ -564,10 +680,9 @@
         </div>
     </section>
 
-    <section id="licenses_certifications" class="py-16">
+    <section id="licenses_certifications" data-section-name="Certifications" class="py-16 portfolio-section">
         <div class="container mx-auto px-6">
-            <h2 class="section-title">Licenses & Certifications</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="section-title-placeholder"></div> <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="card"> 
                     <a href="https://www.credly.com/badges/35eba8f6-aadb-48e7-b84e-9140e812beeb/public_url" target="_blank" rel="noopener noreferrer" class="block hover:opacity-80 transition-opacity">
                         <i class="fas fa-certificate cert-icon-fa"></i> 
@@ -630,10 +745,9 @@
         </div>
     </section>
 
-    <section id="passion_projects" class="py-16">
+    <section id="passion_projects" data-section-name="Projects" class="py-16 portfolio-section">
         <div class="container mx-auto px-6">
-            <h2 class="section-title">Passion Projects</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="section-title-placeholder"></div> <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="card"> 
                     <h3 class="text-xl font-semibold mb-2 font-roboto-mono project-title">milad.space</h3> 
                     <p class="mb-3" style="color: var(--text-primary);">Writing about tech, coding, and AI.</p> 
@@ -663,10 +777,9 @@
         </div>
     </section>
 
-    <section id="contact" class="py-16">
+    <section id="contact" data-section-name="Contact" class="py-16 portfolio-section">
         <div class="container mx-auto px-6">
-            <h2 class="section-title">Contact Me</h2>
-            <div class="max-w-2xl mx-auto card p-8 md:p-10">
+            <div class="section-title-placeholder"></div> <div class="max-w-2xl mx-auto card p-8 md:p-10">
                 <p class="text-center text-lg mb-10" style="color: var(--text-primary);">
                     Let's connect!
                 </p>
@@ -708,6 +821,7 @@
     </footer>
 
     <script>
+      document.addEventListener('DOMContentLoaded', function() {
         const themeToggleContainer = document.getElementById('themeToggleContainer');
         const themeButtons = themeToggleContainer.querySelectorAll('.theme-btn');
         const body = document.body;
@@ -765,7 +879,7 @@
             });
         });
         
-        // Smooth scrolling for any # links (like "Get in Touch" and brand name)
+        // Smooth scrolling for any # links (like brand name)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const targetId = this.getAttribute('href');
@@ -773,14 +887,14 @@
                     e.preventDefault(); 
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
-                        let navHeight = 0;
-                        const navElement = document.querySelector('nav');
-                        if (navElement) {
-                            navHeight = navElement.offsetHeight;
+                        let topBarHeight = 0;
+                        const topBarElement = document.getElementById('topBar'); 
+                        if (topBarElement) {
+                            topBarHeight = topBarElement.offsetHeight;
                         }
                         
                         const elementPosition = targetElement.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - navHeight - 20; 
+                        const offsetPosition = elementPosition + window.pageYOffset - topBarHeight - 20; 
                         window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
                     }
                 }
@@ -791,6 +905,48 @@
         const scrollToTopBtn = document.getElementById('scrollToTopBtn');
         const scrollThreshold = window.innerHeight * 0.7; 
 
+        // Scrollspy Navigation Logic
+        const scrollspyNav = document.getElementById('scrollspyNav');
+        const scrollspyLinks = scrollspyNav.querySelectorAll('.scrollspy-link');
+        const portfolioSections = document.querySelectorAll('.portfolio-section');
+        const topBarHeight = document.getElementById('topBar').offsetHeight;
+        let scrollTimeout;
+
+
+        function updateScrollspy() {
+            if (!scrollspyNav || scrollspyLinks.length === 0) return;
+
+            let currentSectionId = '';
+            portfolioSections.forEach(section => {
+                const sectionTop = section.offsetTop - topBarHeight - 100; 
+                const sectionHeight = section.offsetHeight;
+                if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                    currentSectionId = section.id;
+                }
+            });
+
+            if (!currentSectionId && window.pageYOffset < portfolioSections[0].offsetTop - topBarHeight - 100) {
+                currentSectionId = 'about';
+            }
+
+            scrollspyLinks.forEach(link => {
+                link.classList.remove('active-scrollspy');
+                if (link.getAttribute('href') === '#' + currentSectionId) {
+                    link.classList.add('active-scrollspy');
+                }
+            });
+        }
+        
+        // Scroll Progress Bar
+        const scrollProgressBar = document.getElementById('scrollProgressBar');
+        function updateScrollProgressBar() {
+            if (!scrollProgressBar) return;
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (scrollTop / scrollHeight) * 100;
+            scrollProgressBar.style.width = scrolled + '%';
+        }
+
         window.addEventListener('scroll', () => {
             if (scrollToTopBtn) { 
                 if (window.pageYOffset > scrollThreshold) {
@@ -799,16 +955,38 @@
                     scrollToTopBtn.classList.add('hidden');
                 }
             }
+
+            if (scrollspyNav) {
+                scrollspyNav.classList.add('visible'); // Show on scroll
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    if (scrollspyNav) { 
+                        scrollspyNav.classList.remove('visible');
+                    }
+                }, 1500); // Hide after 1.5 seconds of no scrolling
+            }
+
+            updateScrollspy(); 
+            updateScrollProgressBar();
         });
+
 
         if(scrollToTopBtn) {
             scrollToTopBtn.addEventListener('click', () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         }
+        
+        // Initial calls
+        updateScrollspy();
+        updateScrollProgressBar();
+        if (scrollspyNav && window.pageYOffset === 0) { // Ensure it's hidden if at top initially
+             scrollspyNav.classList.remove('visible');
+        }
 
 
         document.getElementById('currentYear').textContent = new Date().getFullYear();
+      });
     </script>
 
 </body>
