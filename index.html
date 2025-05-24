@@ -331,7 +331,8 @@
 
 
         /* Make cards in sections with secondary background blend in */
-         #skills .card, #passion_projects .card {
+         #skills .card.skill-card-item, /* Only target skill cards for transparent bg in #skills */
+         #passion_projects .card { /* All cards in passion projects are transparent */
             background-color: transparent !important;
         }
         /* Remove border from passion project cards */
@@ -339,6 +340,11 @@
             border: none !important;
             padding-left: 0.5rem; padding-right: 0.5rem;
         }
+        /* Keep borders for skill cards even if bg is transparent */
+        #skills .card.skill-card-item {
+             border-color: var(--border-card); /* Ensure skill cards retain their border */
+        }
+
 
         #passion_projects .card p { color: var(--text-primary); }
         #passion_projects .card h3, #passion_projects .card h3 a { color: var(--text-accent); }
@@ -421,12 +427,18 @@
             background-color: transparent;
             color: var(--contact-icon-color);
             font-size: 1.75rem;
-            transition: background-color 0.2s ease, transform 0.2s ease;
+            transition: background-color 0.2s ease, transform 0.2s ease, opacity 0.4s ease-out, transform 0.4s ease-out; /* Added for animation */
             position: relative;
+            opacity: 0; /* Start hidden for animation */
+            transform: scale(0.85) translateY(10px); /* Start scaled down for animation */
         }
         .contact-icon-link:hover {
             background-color: var(--contact-icon-bg-hover);
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.05); /* Keep existing hover transform, ensure scale is not overridden */
+        }
+        .contact-icon-link.is-visible { /* Class added by JS for animation */
+            opacity: 1;
+            transform: scale(1) translateY(0);
         }
         .contact-icon-link .tooltip-text {
             visibility: hidden;
@@ -597,15 +609,26 @@
             border-radius: 1.5px;
         }
 
-        /* Fade-in Animation for Sections */
+        /* Fade-in Animation for Sections & Blocks */
         .fade-in-section {
             opacity: 0;
-            transform: translateY(30px); /* Start slightly lower */
+            transform: translateY(30px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
         .fade-in-section.is-visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Scale-up Animation for Skill Cards & Contact Icons */
+        .skill-card-item, .contact-icon-link-animated {
+            opacity: 0;
+            transform: scale(0.85) translateY(10px);
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+        }
+        .skill-card-item.is-visible, .contact-icon-link-animated.is-visible {
+            opacity: 1;
+            transform: scale(1) translateY(0);
         }
 
 
@@ -730,10 +753,10 @@
         </div>
     </section>
 
-    <section id="skills" data-section-name="Skills" class="portfolio-section fade-in-section">
+    <section id="skills" data-section-name="Skills" class="portfolio-section">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-bold text-center font-roboto-mono mb-12 md:mb-16 section-title-underline" style="color: var(--text-accent);">Skills</h2>
-            <div id="specializationsContainer" class="flex flex-wrap justify-center gap-3 md:gap-4 mb-12">
+            <div id="specializationsContainer" class="flex flex-wrap justify-center gap-3 md:gap-4 mb-12 fade-in-section">
                 <span class="tag">Full-Stack Web Development</span>
                 <span class="tag">Backend Architecture & API Development</span>
                 <span class="tag">Frontend Engineering & UI/UX Design</span>
@@ -744,41 +767,41 @@
             <div>
                 <h3 class="text-2xl font-semibold mb-6 text-center font-roboto-mono skill-title">Languages, Frameworks & Tools</h3>
                 <div id="toolsContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 text-center">
-                    <div class="card p-4 rounded-lg border"><i class="fab fa-laravel skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Laravel</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fab fa-react skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">React</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fab fa-php skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">PHP</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fab fa-wordpress skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">WordPress</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fab fa-python skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Python</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fas fa-database skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">SQL</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fab fa-js skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">JavaScript</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fas fa-file-code skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">TypeScript</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fab fa-node-js skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Node.js</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fas fa-terminal skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Shell Scripting</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fab fa-golang skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Go</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fas fa-hdd skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">NoSQL</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fas fa-layer-group skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">JAMStack</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fas fa-rocket skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Hugo</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fab fa-aws skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">AWS</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fas fa-searchengin skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">ELKStack</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fab fa-html5 skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">HTML</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fab fa-css3-alt skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">CSS</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fab fa-sass skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Sass</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fab fa-bootstrap skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Bootstrap</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fab fa-java skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Java + XML</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fas fa-cogs skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">.NET</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fas fa-code skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">C++</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fas fa-mobile-alt skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Cordova</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fab fa-git-alt skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Git / Github / Gitlab</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fas fa-code-branch skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">VS Code, Visual Studio</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fab fa-docker skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Docker</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fab fa-jira skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Jira</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fas fa-tasks skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Asana</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fas fa-camera-retro skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Adobe Suite</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fab fa-android skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Android Studio</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fas fa-file-excel skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Excel, Google Sheets</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fas fa-server skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">GaussDB, BigQuery</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fab fa-linux skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Linux</p></div>
-                    <div class="card p-4 rounded-lg border"><i class="fas fa-chart-line skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Grafana, Zabbix</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fab fa-laravel skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Laravel</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fab fa-react skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">React</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fab fa-php skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">PHP</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fab fa-wordpress skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">WordPress</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fab fa-python skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Python</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fas fa-database skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">SQL</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fab fa-js skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">JavaScript</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fas fa-file-code skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">TypeScript</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fab fa-node-js skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Node.js</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fas fa-terminal skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Shell Scripting</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fab fa-golang skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Go</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fas fa-hdd skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">NoSQL</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fas fa-layer-group skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">JAMStack</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fas fa-rocket skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Hugo</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fab fa-aws skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">AWS</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fas fa-searchengin skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">ELKStack</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fab fa-html5 skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">HTML</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fab fa-css3-alt skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">CSS</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fab fa-sass skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Sass</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fab fa-bootstrap skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Bootstrap</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fab fa-java skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Java + XML</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fas fa-cogs skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">.NET</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fas fa-code skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">C++</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fas fa-mobile-alt skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Cordova</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fab fa-git-alt skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Git / Github / Gitlab</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fas fa-code-branch skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">VS Code, Visual Studio</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fab fa-docker skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Docker</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fab fa-jira skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Jira</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fas fa-tasks skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Asana</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fas fa-camera-retro skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Adobe Suite</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fab fa-android skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Android Studio</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fas fa-file-excel skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Excel, Google Sheets</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fas fa-server skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">GaussDB, BigQuery</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fab fa-linux skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Linux</p></div>
+                    <div class="card p-4 rounded-lg border skill-card-item"><i class="fas fa-chart-line skill-icon"></i><p class="text-sm" style="color: var(--text-primary);">Grafana, Zabbix</p></div>
                 </div>
             </div>
         </div>
@@ -904,31 +927,31 @@
             <h2 class="text-3xl md:text-4xl font-bold text-center font-roboto-mono mb-12 md:mb-16 section-title-underline" style="color: var(--text-accent);">Get In Touch</h2>
             <div class="max-w-2xl mx-auto card p-8 md:p-10">
                 <div class="contact-icons-grid">
-                    <a href="mailto:miladyekleh@gmail.com" class="contact-icon-link" title="Email">
+                    <a href="mailto:miladyekleh@gmail.com" class="contact-icon-link contact-icon-link-animated" title="Email">
                         <i class="fas fa-envelope"></i>
                         <span class="tooltip-text">miladyekleh@gmail.com</span>
                     </a>
-                    <a href="https://linkedin.com/in/yekmil/" target="_blank" rel="noopener noreferrer" class="contact-icon-link" title="LinkedIn">
+                    <a href="https://linkedin.com/in/yekmil/" target="_blank" rel="noopener noreferrer" class="contact-icon-link contact-icon-link-animated" title="LinkedIn">
                         <i class="fab fa-linkedin"></i>
                         <span class="tooltip-text">linkedin.com/in/yekmil</span>
                     </a>
-                    <a href="https://github.com/yekmil" target="_blank" rel="noopener noreferrer" class="contact-icon-link" title="GitHub">
+                    <a href="https://github.com/yekmil" target="_blank" rel="noopener noreferrer" class="contact-icon-link contact-icon-link-animated" title="GitHub">
                         <i class="fab fa-github"></i>
                         <span class="tooltip-text">GitHub: yekmil / m11ad</span>
                     </a>
-                    <a href="https://t.me/yekmilad" target="_blank" rel="noopener noreferrer" class="contact-icon-link" title="Telegram">
+                    <a href="https://t.me/yekmilad" target="_blank" rel="noopener noreferrer" class="contact-icon-link contact-icon-link-animated" title="Telegram">
                         <i class="fab fa-telegram-plane"></i>
                         <span class="tooltip-text">Telegram: @yekmilad</span>
                     </a>
-                     <a href="https://milad.space" target="_blank" rel="noopener noreferrer" class="contact-icon-link" title="Tech Blog">
+                     <a href="https://milad.space" target="_blank" rel="noopener noreferrer" class="contact-icon-link contact-icon-link-animated" title="Tech Blog">
                         <i class="fas fa-rss"></i>
                         <span class="tooltip-text">milad.space</span>
                     </a>
-                     <a href="http://takinsoft.ir" target="_blank" rel="noopener noreferrer" class="contact-icon-link" title="Portfolio Website">
+                     <a href="http://takinsoft.ir" target="_blank" rel="noopener noreferrer" class="contact-icon-link contact-icon-link-animated" title="Portfolio Website">
                         <i class="fas fa-briefcase"></i>
                          <span class="tooltip-text">takinsoft.ir</span>
                     </a>
-                    <div class="contact-icon-link" title="Phone">
+                    <div class="contact-icon-link contact-icon-link-animated" title="Phone">
                         <i class="fas fa-phone"></i>
                         <span class="tooltip-text">+989900994207</span>
                     </div>
@@ -1166,15 +1189,17 @@
             typeWriterCycle(heroSubtitleEl, heroSubtitleWords);
         }
 
-        // --- FADE-IN SECTION SCRIPT ---
+        // --- FADE-IN & SCALE-UP ANIMATION SCRIPT ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1 
+        };
+
+        // General fade-in for sections
         const sectionsToFadeIn = document.querySelectorAll('.fade-in-section');
         if (sectionsToFadeIn.length > 0) {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1 
-            };
-            const observerCallback = (entries, observer) => {
+            const sectionObserverCallback = (entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
@@ -1182,11 +1207,61 @@
                     }
                 });
             };
-            const intersectionObserver = new IntersectionObserver(observerCallback, observerOptions);
+            const sectionIntersectionObserver = new IntersectionObserver(sectionObserverCallback, observerOptions);
             sectionsToFadeIn.forEach(section => {
-                intersectionObserver.observe(section);
+                sectionIntersectionObserver.observe(section);
             });
         }
+        
+        // Staggered scale-up for skill cards
+        const skillCards = document.querySelectorAll('.skill-card-item');
+        if (skillCards.length > 0) {
+             const skillCardObserverCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        let itemIndex = 0;
+                        let el = entry.target;
+                        // Calculate index based on previous siblings with the same class
+                        while (el.previousElementSibling && el.previousElementSibling.classList.contains('skill-card-item')) {
+                            itemIndex++;
+                            el = el.previousElementSibling;
+                        }
+                        entry.target.style.transitionDelay = `${itemIndex * 100}ms`;
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+            const skillCardIntersectionObserver = new IntersectionObserver(skillCardObserverCallback, observerOptions);
+            skillCards.forEach(card => {
+                skillCardIntersectionObserver.observe(card);
+            });
+        }
+
+        // Staggered scale-up for contact icons
+        const contactIcons = document.querySelectorAll('.contact-icon-link-animated');
+        if (contactIcons.length > 0) {
+            const contactIconObserverCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        let itemIndex = 0;
+                        let el = entry.target;
+                         while (el.previousElementSibling && el.previousElementSibling.classList.contains('contact-icon-link-animated')) {
+                            itemIndex++;
+                            el = el.previousElementSibling;
+                        }
+                        entry.target.style.transitionDelay = `${itemIndex * 100}ms`;
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+            const contactIconIntersectionObserver = new IntersectionObserver(contactIconObserverCallback, observerOptions);
+            contactIcons.forEach(icon => {
+                contactIconIntersectionObserver.observe(icon);
+            });
+        }
+
       });
     </script>
 
